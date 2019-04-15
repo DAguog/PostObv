@@ -1,8 +1,8 @@
-package com.example.postobv;
+package com.lester.postobv;
 
 import android.os.Bundle;
 
-import com.example.postobv.result.ViewComponentResult;
+import com.lester.postobv.result.ViewComponentResult;
 
 public class MainActivity extends BaseActivity<ViewComponentResult> {
 

@@ -1,4 +1,4 @@
-package com.example.postobv.result;
+package com.lester.postobv.result;
 
 import com.lester.lib.forview.bean.ViewMsgResult;
 
