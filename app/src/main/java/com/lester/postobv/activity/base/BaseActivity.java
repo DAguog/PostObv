@@ -1,4 +1,4 @@
-package com.lester.postobv;
+package com.lester.postobv.activity.base;
 
 import android.support.v7.app.AppCompatActivity;
 

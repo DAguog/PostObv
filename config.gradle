@@ -1,0 +1,53 @@
+ext {
+
+    /*
+    *单独的构建配置文件，好维护
+    *
+    * */
+
+    /*包名配置*/
+    applicationId = "com.lester.postobv"
+
+    /*Android SDK版本配置*/
+    minSdkVersion = 15
+    targetSdkVersion = 28
+    compileSdkVersion = 28
+
+    /*APP版本配置*/
+    versionCode = 1
+    versionName = "1.0.0"
+
+    /*打包签名文件信息配置*/
+    storeFile = "lester.jks"
+    storePassword = "lester"
+    keyAlias = "alias"
+    keyPassword = "lester"
+
+    /*混淆规则文件配置*/
+    proguardFiles = "proguard-rules.pro"
+//    proguardFiles="proguard-rules.pro"
+
+    outputFileName = "PostObv_${versionCode}_${versionName}_${getCurrentTime()}"
+
+    /*依赖配置*/
+    dependencies_project = [
+            ':library'
+    ]
+    dependencies_remote = [
+            'com.android.support:appcompat-v7:28.0.0',
+            'com.android.support.constraint:constraint-layout:1.1.3',
+            'junit:junit:4.12'
+    ]
+    dependencies_Processor = [
+
+    ]
+
+    dependencies_aar = [
+
+    ]
+
+}
+
+def getCurrentTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}

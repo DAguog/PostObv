@@ -1,7 +1,9 @@
-package com.lester.postobv;
+package com.lester.postobv.activity;
 
 import android.os.Bundle;
 
+import com.lester.postobv.activity.base.BaseActivity;
+import com.lester.postobv.R;
 import com.lester.postobv.result.ViewComponentResult;
 
 public class MainActivity extends BaseActivity<ViewComponentResult> {
@@ -10,8 +12,6 @@ public class MainActivity extends BaseActivity<ViewComponentResult> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
 
         //

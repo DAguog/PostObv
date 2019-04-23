@@ -1,15 +1,53 @@
 apply plugin: 'com.android.application'
 
+apply from: '../config.gradle'
+
 android {
-    compileSdkVersion 28
+    compileSdkVersion project.ext.compileSdkVersion
     defaultConfig {
-        applicationId 'com.lester.postobv'
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        applicationId project.ext.applicationId
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        versionCode project.ext.versionCode
+        versionName project.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+//    signingConfigs {
+//        release {
+//            storeFile file(project.ext.storeFile)
+//            storePassword project.ext.storePassword
+//            keyAlias project.ext.keyAlias
+//            keyPassword project.ext.keyPassword
+//        }
+//        debug {
+//            storeFile file(project.ext.storeFile)
+//            storePassword project.ext.storePassword
+//            keyAlias project.ext.keyAlias
+//            keyPassword project.ext.keyPassword
+//        }
+//    }
+//    buildTypes {
+//        debug {
+//            minifyEnabled false
+//            debuggable true
+//            renderscriptDebuggable true
+//            zipAlignEnabled true
+//            shrinkResources false
+//            signingConfig signingConfigs.debug
+//            proguardFiles project.ext.proguardFiles
+//        }
+//        release {
+//            minifyEnabled true
+//            debuggable false
+//            renderscriptDebuggable false
+//            zipAlignEnabled true
+//            shrinkResources false
+//            signingConfig signingConfigs.release
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), project.ext.proguardFiles
+//        }
+//    }
     buildTypes {
         release {
             minifyEnabled false
@@ -22,10 +60,20 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation project(':library')
+    for (String item : project.ext.dependencies_project) {
+        implementation project(item)
+    }
+    for (String item : project.ext.dependencies_remote) {
+        implementation item
+    }
+    for (String item : project.ext.dependencies_Processor) {
+        annotationProcessor item
+    }
+    for (String item : project.ext.dependencies_aar) {
+        implementation(name: item, ext: 'aar')
+    }
+
 }
