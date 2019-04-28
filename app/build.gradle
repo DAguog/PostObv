@@ -4,6 +4,7 @@ apply from: '../config.gradle'
 
 android {
     compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion = project.ext.buildToolsVersion
     defaultConfig {
         applicationId project.ext.applicationId
         minSdkVersion project.ext.minSdkVersion
@@ -56,6 +57,11 @@ android {
     }
     productFlavors {
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
 }
 
 dependencies {
@@ -74,6 +80,10 @@ dependencies {
     }
     for (String item : project.ext.dependencies_aar) {
         implementation(name: item, ext: 'aar')
+    }
+
+    if (!imgLoaderRunAlong.toBoolean()) {
+        implementation project(':imgloader')
     }
 
 }
