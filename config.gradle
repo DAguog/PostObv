@@ -32,7 +32,8 @@ ext {
 
     /*依赖配置*/
     dependencies_project = [
-            ':library'
+            ':library',
+            ':baselibrary'
     ]
     dependencies_remote = [
             'com.android.support:appcompat-v7:28.0.0',
