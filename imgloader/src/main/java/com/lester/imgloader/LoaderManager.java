@@ -31,8 +31,8 @@ public class LoaderManager {
 
     public LoaderManager setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
-        this.poster = new NetPoster(imgUrl);
-        this.GetImgEngine = new UrlConnectionGetImg(imgUrl);
+        this.poster = NetPoster.getInstance();
+        this.GetImgEngine = new UrlConnectionGetImg();
         return LoaderManager.this;
     }
 
@@ -59,11 +59,9 @@ public class LoaderManager {
                                 }
                             }
                         });
-
                     }
                 });
 
         poster.post(loaderTask);
-
     }
 }

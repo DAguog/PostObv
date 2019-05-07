@@ -10,18 +10,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class UrlConnectionGetImg implements IGetImg {
-    String urlStr;
 
-    public UrlConnectionGetImg(String urlStr) {
-        this.urlStr = urlStr;
-    }
-
-    public void setUrlStr(String urlStr) {
-        this.urlStr = urlStr;
+    public UrlConnectionGetImg() {
     }
 
     @Override
-    public void getImage(final CallBack callback) {
+    public void getImage(String urlStr, final CallBack callback) {
         URL url;
         HttpURLConnection connection=null;
         Bitmap bitmap=null;

@@ -3,15 +3,16 @@ package com.lester.imgloader;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
 
-public class LoaderTask implements Runnable {
+public class LoaderTask implements ITask {
 
     private String url;
-    private View TargetView;
+    private ImageView TargetView;
     private IGetImg Engine;
-    private TaskCallBack callBack;
+    private ITask.TaskCallBack callBack;
 
     public LoaderTask() {
     }
@@ -25,7 +26,26 @@ public class LoaderTask implements Runnable {
         return LoaderTask.this;
     }
 
-    public LoaderTask TargetView(View view) {
+    @Override
+    public String getUrl() {
+        return url;
+    }
+
+    @Override
+    public ImageView getTargetView() {
+        return TargetView;
+    }
+
+    public IGetImg getEngine() {
+        return Engine;
+    }
+
+    @Override
+    public ITask.TaskCallBack getCallBack() {
+        return callBack;
+    }
+
+    public LoaderTask TargetView(ImageView view) {
         this.TargetView = view;
         return LoaderTask.this;
     }
@@ -35,7 +55,7 @@ public class LoaderTask implements Runnable {
         return LoaderTask.this;
     }
 
-    public LoaderTask setCallBack(TaskCallBack callBack) {
+    public LoaderTask setCallBack(ITask.TaskCallBack callBack) {
         this.callBack = callBack;
         return LoaderTask.this;
     }
@@ -43,7 +63,7 @@ public class LoaderTask implements Runnable {
     @Override
     public void run() {
         if (Engine!=null) {
-            Engine.getImage(new IGetImg.CallBack() {
+            Engine.getImage(url,new IGetImg.CallBack() {
                 @Override
                 public void bitmap(Bitmap bitmap) {
                     callBack.CallBack(bitmap);
@@ -52,7 +72,5 @@ public class LoaderTask implements Runnable {
         }
     }
 
-    interface TaskCallBack {
-        void CallBack(Bitmap bitmap);
-    }
+
 }
